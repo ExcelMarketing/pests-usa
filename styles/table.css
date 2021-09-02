@@ -73,7 +73,6 @@ body {
 }
 
 .responsive .table-header .main-column {
-  height: 97.3px;
   border-bottom: 1px solid #001c35;
 }
 
@@ -100,7 +99,6 @@ body {
 
 .header-icon .icon {
   color: var(--header-icon-default);
-  cursor: pointer;
 }
 
 .table-head .icon {
@@ -113,13 +111,13 @@ body {
 }
 
 .header-icon {
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   user-select: none;
   margin: 0;
   width: 100%;
+  height: 33px;
   border-radius: 6px;
 }
 
@@ -244,18 +242,9 @@ body {
   border-top: 2px solid #f8f8f8;
 }
 
-.table-row.bordered:last-child {
-  border-bottom: 2px solid #f8f8f8;
-}
 
 .responsive .table-body .table-row.bordered .main-column {
   border-top: 2px solid #f8f8f8;
-  margin-top: -2px;
-  height: 37px !important;
-}
-
-.responsive .table-body .table-row.bordered:last-child .main-column {
-  border-bottom: 2px solid #f8f8f8;
   margin-top: -2px;
   height: 37px !important;
 }

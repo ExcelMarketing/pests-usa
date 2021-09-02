@@ -9,7 +9,7 @@ const columnConf = {
   [pestTypes.cockroaches]: [
     {
       name: "COCKROACH PEST<br>RANKING",
-      icon: "./images/Icons/mosquito.svg",
+      icon: "./images/Icons/cockroach.svg",
       propName: "STATE",
       rankProp: "STATE",
     },

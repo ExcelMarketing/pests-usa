@@ -14,7 +14,7 @@ function App() {
     [pestTypes.rodents]: ["#FDCC67", "#FCD78B", "#FEE8BE", "#FEF5E1"],
     [pestTypes.mosquitoes]: ["#16853E", "#5EA36E", "#A2C9AE", "#D2E6DA"],
     [pestTypes.ticks]: ["#E02129", "#EB6764", "#F5A5A4", "#FBD5D4"],
-  }
+  };
 
   function loadData() {
     return Promise.all([
@@ -46,7 +46,7 @@ function App() {
 
   function initMap(pest) {
     const data = {};
-    tableData[pest].forEach(m => {
+    tableData[pest].forEach((m) => {
       data[m.STATE] = m.Overall;
     });
 
@@ -60,10 +60,14 @@ function App() {
         const rank = data[name];
 
         return `
-          <div class="tooltip-title">${isNaN(rank) ? 'N/A' : ordinal_suffix_of(rank)} - ${name}</div>
-          <div class="tooltip-subtitle">${capitalizeFirstLetter(pest)} Pest Likelihood</div>
-        `
-      }
+          <div class="tooltip-title">${
+            isNaN(rank) ? "N/A" : ordinal_suffix_of(rank)
+          } - ${name}</div>
+          <div class="tooltip-subtitle">${capitalizeFirstLetter(
+            pest
+          )} Pest Likelihood</div>
+        `;
+      },
     }).render();
   }
 
@@ -79,44 +83,43 @@ function App() {
   }
 
   function initSelect() {
-    var select = document.querySelector('#pest_select');
-  
+    var select = document.querySelector("#pest_select");
+
     const choice = new Choices(select, {
       choices: [
         {
           label: pestTypes.cockroaches.toUpperCase(),
           value: pestTypes.cockroaches,
-          selected: true
+          selected: true,
         },
         {
           label: pestTypes.rodents.toUpperCase(),
-          value: pestTypes.rodents
+          value: pestTypes.rodents,
         },
         {
           label: pestTypes.mosquitoes.toUpperCase(),
-          value: pestTypes.mosquitoes
+          value: pestTypes.mosquitoes,
         },
         {
           label: pestTypes.ticks.toUpperCase(),
           value: pestTypes.ticks,
-        }
+        },
       ],
-      position: 'bottom',
+      position: "bottom",
       searchEnabled: false,
       shouldSort: false,
     });
-  
+
     select.addEventListener(
-      'change',
+      "change",
       function (event) {
         selectPest(event.detail.value);
       },
-      false,
+      false
     );
-  
+
     return choice;
   }
-  
 
   function selectPest(p) {
     if (!pestTypes[p]) {
@@ -126,7 +129,9 @@ function App() {
     pest = p;
     d3.selectAll(".pest").classed("active", false);
     d3.select("." + p).classed("active", true);
-    d3.select("#root").attr("class", "container").classed(p + '-selected', true);
+    d3.select("#root")
+      .attr("class", "container")
+      .classed(p + "-selected", true);
 
     initMap(pest);
     initTable(pest);
@@ -139,18 +144,19 @@ function App() {
     selectPest,
     zoomIn() {
       if (map) {
-          const scale = Math.min(maxScale, currentScale + zoomStep);
-          currentScale = scale;
-          map.zoom(scale);
+        const scale = Math.min(maxScale, currentScale + zoomStep);
+        currentScale = scale;
+        map.zoom(scale);
+        d3.selectAll(".zoom-btn:last-child").classed('active', true)
       }
     },
     zoomOut() {
       if (map) {
-          const scale = Math.max(minScale, currentScale - zoomStep);
-          currentScale = scale;
-          map.zoom(scale);
+        currentScale = 1;
+        map.resetZoom();
+        d3.selectAll(".zoom-btn:last-child").classed('active', false)
       }
-    }
+    },
   };
 }
 

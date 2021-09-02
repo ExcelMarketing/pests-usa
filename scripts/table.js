@@ -141,8 +141,11 @@ function Table(params) {
         });
 
       adjustShowBtn();
+    } else {
+      container.select(".show-button").remove();
     }
 
+    d3.select(".table-head.main-column").style("height", null);
     drawAll();
   }
 
@@ -155,12 +158,13 @@ function Table(params) {
       attrs.pagination = false;
     }
 
-
     pageSize = attrs.pagination ? attrs.pageSize[br] : attrs.data.length + 1;
     showNColumnsMobile = attrs.numOfColumnsMobile[br];
     firstColumnWidth = attrs.firstColumnWidth[br];
 
-
+    if (store) {
+      store.pageSize = pageSize;
+    }
   }
 
   function drawAll(resize) {
@@ -171,13 +175,15 @@ function Table(params) {
     addTableHead(resize);
     addTableBody();
 
-    if (attrs.sortable) {
+    // if (attrs.sortable) {
+    if (getMobileBreakdown() === "xs") {
       adjustHeight();
-
-      if (currentSort) {
-        sortTableBy(currentSort, false);
-      }
     }
+
+    // if (currentSort) {
+    //   sortTableBy(currentSort, false);
+    // }
+    // }
 
     makeItResponsive();
   }
@@ -274,8 +280,7 @@ function Table(params) {
       .classed("bordered", true);
 
     if (attrs.sortable) {
-      tableRow.style("left", "0px")
-      .style("top", function (d, i) {
+      tableRow.style("left", "0px").style("top", function (d, i) {
         return i * attrs.cellHeight + "px";
       });
     }
@@ -307,10 +312,13 @@ function Table(params) {
         })
         .html((x) => {
           if (x.cellTemplate && typeof x.cellTemplate === "function") {
-            return x.cellTemplate({
-              ...d,
-              value: getValue(d, x.propName),
-            }, i);
+            return x.cellTemplate(
+              {
+                ...d,
+                value: getValue(d, x.propName),
+              },
+              i
+            );
           }
 
           return getValue(d, x.propName);
@@ -360,15 +368,22 @@ function Table(params) {
   }
 
   function adjustHeight() {
-    var tableHeaderHeight = tableHeader.node().getBoundingClientRect().height;
+    setTimeout(() => {
+      var tableHeaderHeight = tableHeader.node().getBoundingClientRect().height;
 
-    table.style(
-      "height",
-      tableHeaderHeight +
-        112 + 15,
-        attrs.cellHeight * store.currentData.length +
-        "px"
-    );
+      table.style(
+        "height",
+        tableHeaderHeight +
+          15 + // bottom margin of header
+          (attrs.cellHeight + 2) * store.currentData.length +
+          "px"
+      );
+
+      d3.select(".table-head.main-column").style(
+        "height",
+        getMobileBreakdown() === "xs" ? tableHeaderHeight + "px" : null
+      );
+    }, 0);
   }
 
   function makeItResponsive() {
@@ -637,9 +652,7 @@ function Table(params) {
     d3.select(window).on("resize." + attrs.id, function () {
       if (timer) clearTimeout(timer);
       timer = setTimeout(() => {
-        setDimensions();
-        store.pageSize = pageSize;
-        drawAll(true);
+        main();
       }, 100);
     });
     return main;

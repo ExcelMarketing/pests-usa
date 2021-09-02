@@ -1,6 +1,7 @@
 function USMap(params) {
   var attrs = Object.assign(
     {
+      id: Math.floor(Math.random() * 10000000),
       width: window.innerWidth,
       height: window.innerHeight,
       margin: {
@@ -302,7 +303,9 @@ function USMap(params) {
   }
 
   function resetZoom() {
-    svg.transition().duration(1000).call(zoom.transform, d3.zoomIdentity);
+    svg.transition()
+      .duration(750)
+      .call(zoom.transform, d3.zoomIdentity);
   }
 
   function scaleOnly(scale) {
@@ -325,6 +328,13 @@ function USMap(params) {
 
   main.render = function () {
     main();
+    var timer;
+    d3.select(window).on("resize." + attrs.id, function () {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        main();
+      });
+    });
     return main;
   };
 

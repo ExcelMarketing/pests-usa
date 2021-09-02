@@ -27,7 +27,7 @@
   }
 
   .table-wrap .table-body {
-    height: 400px;
+    height: 370px;
     overflow-y: auto;
     position: static !important;
     scroll-behavior: smooth;
