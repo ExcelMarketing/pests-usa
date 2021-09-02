@@ -40,6 +40,20 @@
   .us-map {
     padding: 30px;
   }
+
+  .table-header {
+    border-bottom: 1px solid #001c35;
+  }
+  
+  .responsive .table-header .main-column {
+    border-bottom: 1px solid #001c35;
+  }
+
+  .content {
+    border: 2px solid #0355a3;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
 }
 
 @media (min-width: 768px) {

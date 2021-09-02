@@ -26,9 +26,9 @@ function Table(params) {
       cellHeight: 60, // height of each cells in table body
       firstColumnWidth: {
         // city column width (varies based on screen size),
-        xs: 180,
-        sm: 180,
-        md: 180,
+        xs: 190,
+        sm: 190,
+        md: 190,
         lg: 200,
         rest: 200,
       },
@@ -72,6 +72,7 @@ function Table(params) {
     currentSort = null, // current sort column
     timer,
     firstColumnWidth,
+    scrollWidth,
     pageSize;
 
   const getValue = (d, propName) => {
@@ -105,6 +106,9 @@ function Table(params) {
     table = container.patternify({
       tag: "div",
       selector: "table-grid",
+    })
+    .on("scroll", function() {
+      adjustScrollBar(this.scrollLeft);
     });
 
     headerCategories = table.patternify({
@@ -146,7 +150,27 @@ function Table(params) {
     }
 
     d3.select(".table-head.main-column").style("height", null);
+    addScrollBar();
     drawAll();
+  }
+
+  function addScrollBar() {
+    if (getMobileBreakdown() === attrs.mobileBreakdown) {
+      container.patternify({
+        tag: 'div',
+        selector: 'scroll-bar'
+      });
+    } else {
+      container.selectAll(".scroll-bar").remove();
+    }
+  }
+
+  function adjustScrollBar(left) {
+    const tBodyWidth = tBody.node().getBoundingClientRect().width;
+    const p = left / (scrollWidth - firstColumnWidth);
+
+    container.selectAll(".scroll-bar")
+      .style("left", (firstColumnWidth + (p * tBodyWidth)) + "px")
   }
 
   function setDimensions() {
@@ -374,7 +398,7 @@ function Table(params) {
       table.style(
         "height",
         tableHeaderHeight +
-          15 + // bottom margin of header
+          16 + // bottom margin of header
           (attrs.cellHeight + 2) * store.currentData.length +
           "px"
       );
@@ -383,6 +407,10 @@ function Table(params) {
         "height",
         getMobileBreakdown() === "xs" ? tableHeaderHeight + "px" : null
       );
+
+      container.selectAll(".scroll-bar")
+        .style("top", (tableHeaderHeight - 4) + "px")
+        .style("left", firstColumnWidth + "px");
     }, 0);
   }
 
@@ -394,6 +422,8 @@ function Table(params) {
       viewPortWidth,
       eachWidth * (headers.length - 1) + firstColumnWidth
     );
+
+    scrollWidth = w;
 
     if (getMobileBreakdown() === attrs.mobileBreakdown && w > viewPortWidth) {
       tBody.style("position", "static");
@@ -427,6 +457,15 @@ function Table(params) {
         if (d.isMainColumn) return firstColumnWidth + "px";
         return `calc(100% / ${headers.length - 1})`;
       });
+
+      // SCROLL BAR
+      const totalWidth = w - firstColumnWidth;
+      const tBodyWidth = tBody.node().getBoundingClientRect().width;
+      const scrollBarWidth = (tBodyWidth / totalWidth);
+ 
+      container.selectAll(".scroll-bar")
+        .style("width", (tBodyWidth * scrollBarWidth) + "px")
+
     } else {
       table.classed("responsive", false);
       table
