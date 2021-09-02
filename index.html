@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pests USA</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tippy.js@6/themes/light.css"
+    />
+
+    <link rel="stylesheet" href="./libs/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./libs/css/choices.min.css" />
+
+    <link rel="stylesheet" href="./styles/table.css">
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/responsive.css" />
+  </head>
+  <body>
+    <div class="container cockroaches-selected" id="root">
+      <div class="tool mt-lg-5">
+        <div class="header">
+          <h3 class="title">
+            WHICH STATE IS MORE LIKELY TO be home to these pests?
+          </h3>
+          <h6 class="sub-title d-desktop">
+            Click the map to see how likely each state is to be home to the
+            selected pest
+          </h6>
+          <div class="pest-select-dropdown d-mobile">
+            <select id="pest_select"></select>
+          </div>
+        </div>
+
+        <div class="content">
+
+          <div class="map-area">
+
+            <div class="zoom-mobile d-mobile">
+              <div class="cta-click">
+                Click the map to see how likely each state is to be home to the selected pest
+              </div>
+              <div class="zoom-btns">
+                <button class="zoom-btn btn btn-primary-outline active" onclick="window.app.zoomIn()">
+                  <img src="./images/Icons/plus.svg" />
+                </button>
+                <button class="zoom-btn btn btn-primary-outline" onclick="window.app.zoomOut()">
+                  <img src="./images/Icons/line.svg" />
+                </button>
+              </div>
+            </div>
+
+            <div class="map-flex">
+              <div class="us-map">
+                <div class="map-wrapper" id="map"></div>
+                <div class="gradient">
+                  <div class="labels">
+                    <div>MOST LIKELY</div>
+                    <div>LEAST LIKELY</div>
+                  </div>
+                  <div class="grad"></div>
+                </div>
+              </div>
+              <div class="pest-select d-desktop">
+                <div class="box">
+                  <h3>SELECT A PEST</h3>
+                  <button class="pest cockroaches btn btn-primary-outline active" onclick="window.app.selectPest('cockroaches')">
+                    <div class="icon">
+                      <img src="./images/Photos/cockroach.jpeg" />
+                    </div>
+                    <div class="name">
+                      COCKROACHES
+                    </div>
+                  </button>
+                  <button class="pest rodents btn btn-primary-outline" onclick="window.app.selectPest('rodents')">
+                    <div class="icon">
+                      <img src="./images/Photos/rodents.jpg" />
+                    </div>
+                    <div class="name">
+                      RODENTS
+                    </div>
+                  </button>
+                  <button class="pest mosquitoes btn btn-primary-outline" onclick="window.app.selectPest('mosquitoes')">
+                    <div class="icon">
+                      <img src="./images/Photos/mosquitoes.jpeg" />
+                    </div>
+                    <div class="name">
+                      MOSQUITOES
+                    </div>
+                  </button>
+                  <button class="pest ticks btn btn-primary-outline" onclick="window.app.selectPest('ticks')">
+                    <div class="icon">
+                      <img src="./images/Photos/tick.jpeg" />
+                    </div>
+                    <div class="name">
+                      TICKS
+                    </div>
+                  </button>
+                  <h3 class="mt-2">ZOOM</h3>
+                  <div class="zoom-btns">
+                    <button class="zoom-btn btn btn-primary-outline active" onclick="window.app.zoomIn()">
+                      <img src="./images/Icons/plus.svg" />
+                    </button>
+                    <button class="zoom-btn btn btn-primary-outline" onclick="window.app.zoomOut()">
+                      <img src="./images/Icons/line.svg" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-area">
+            <h3>These factors are some of the most important for mosquitoes to thrive in:</h3>
+            <div id="table" class="mt-5 table-wrap"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+
+    <script src="./libs/js/d3.v7.min.js"></script>
+    <script src="./libs/js/choices.min.js"></script>
+    <script src="./libs/js/topojson-client.min.js"></script>
+
+    <script src="./scripts/utils.js"></script>
+    <script src="./scripts/config.js"></script>
+    <script src="./scripts/DataStore.js"></script>
+    <script src="./scripts/us-map.js"></script>
+    <script src="./scripts/table.js"></script>
+    <script src="./scripts/main.js"></script>
+  </body>
+</html>

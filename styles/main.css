@@ -1,0 +1,405 @@
+:root {
+  --blue: #0355a3;
+  --pest-box-width: 158px;
+  --cockroaches: #4393cf;
+  --rodents: #fbcd66;
+  --mosquitoes: #12853d;
+  --ticks: #e02127;
+}
+
+html,
+body {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+path:focus {
+  outline: none !important;
+  border: none !important;
+  stroke: none !important;
+}
+
+.pest-select-dropdown {
+  padding-left: 14%;
+  padding-right: 14%;
+  padding-top: 10px;
+}
+
+.choices[data-type*="select-one"]:after {
+  border-color: transparent;
+  border-width: 0px;
+  margin-top: 0px;
+  background-image: url("../images/Icons/arrow.svg");
+  background-repeat: no-repeat;
+  background-size: 25px 12px;
+  width: 25px;
+  height: 12px;
+  transform: translateY(-50%);
+  right: 14px;
+}
+
+.choices__inner {
+  background: #ffffff;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+}
+
+.choices__list--single .choices__item {
+  padding-left: 40px;
+}
+
+.choices__list--single .choices__item:before {
+  content: " ";
+  background-repeat: no-repeat;
+  background-size: 33px 33px;
+  background-position: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  position: absolute;
+  left: 6px;
+  top: 6px;
+}
+
+.choices__list--single .choices__item[data-value="cockroaches"]:before {
+  background-image: url("../images/Photos/cockroach.jpeg");
+  border: 1px solid var(--cockroaches);
+}
+
+.choices__list--single .choices__item[data-value="rodents"]:before {
+  background-image: url("../images/Photos/rodents.jpg");
+  border: 1px solid var(--rodents);
+}
+
+.choices__list--single .choices__item[data-value="mosquitoes"]:before {
+  background-image: url("../images/Photos/mosquitoes.jpeg");
+  border: 1px solid var(--mosquitoes);
+}
+
+.choices__list--single .choices__item[data-value="ticks"]:before {
+  background-image: url("../images/Photos/tick.jpeg");
+  border: 1px solid var(--ticks);
+}
+
+.choices.is-open.is-focused:after {
+  border-color: transparent;
+  margin-top: -6px;
+  transform: rotate(180deg);
+}
+
+.container {
+  max-width: 1040px;
+  padding: 0px;
+}
+
+.header {
+  background-color: var(--blue);
+  padding: 20px 15px;
+}
+
+.header .title {
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.header .sub-title {
+  color: #ffffff;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  margin-bottom: 0px;
+}
+
+.content {
+  border: 2px solid #0355a3;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.map-area {
+  background-color: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.map-flex {
+  display: flex;
+  width: 100%;
+}
+
+.us-map {
+  width: 100%;
+  padding: 20px;
+}
+
+.pest-select {
+  padding: 30px 0px;
+}
+
+.pest-select .box {
+  background: #f8f8f8;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 17px 0px 0px 17px;
+  padding: 20px;
+}
+
+.table-area {
+  background: #f8f8f8;
+  padding: 20px;
+}
+
+.pest-select h3 {
+  font-weight: bold;
+
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+}
+
+.pest-select .pest {
+  width: 100%;
+  border: none;
+  text-align: center;
+  margin-bottom: 5px;
+  background-color: transparent;
+  padding: 8px 0px;
+}
+
+.pest-select .pest:active,
+.pest-select .pest:focus {
+  box-shadow: none;
+}
+
+.pest-select .icon {
+  width: 45px;
+  height: 45px;
+  margin: 0 auto;
+  border-radius: 50%;
+  margin-bottom: 8px;
+  border: 1px solid #bdbdbd;
+}
+
+.pest-select .icon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  filter: grayscale(0.5);
+  transition: 0.3s filter ease-in-out;
+}
+
+.pest-select .name {
+  color: #ffffff;
+  background-color: #bdbdbd;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 5px 0px;
+  width: 100%;
+  transition: 0.3s background-color ease-in-out;
+}
+
+.zoom-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.zoom-btn:first-child {
+  margin-right: 8px;
+}
+
+.zoom-btn:last-child {
+  margin-left: 8px;
+}
+
+.zoom-btn {
+  padding: 0px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #bdbdbd;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pest.active .icon img {
+  filter: none;
+}
+
+.cockroaches.active .icon {
+  border-color: var(--cockroaches);
+}
+
+.cockroaches.active .name {
+  background-color: var(--cockroaches);
+}
+
+.rodents.active .icon {
+  border-color: var(--rodents);
+}
+
+.rodents.active .name {
+  background-color: var(--rodents);
+}
+
+.mosquitoes.active .icon {
+  border-color: var(--mosquitoes);
+}
+
+.mosquitoes.active .name {
+  background-color: var(--mosquitoes);
+}
+
+.ticks.active .icon {
+  border-color: var(--ticks);
+}
+
+.ticks.active .name {
+  background-color: var(--ticks);
+}
+
+.zoom-btn.active {
+  background-color: var(--blue);
+}
+
+.table-area h3 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 21px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #001c35;
+}
+
+.table-row {
+  transition: 0.3s background-color ease-in-out;
+}
+
+.table-row:nth-child(odd),
+.responsive .table-row:nth-child(odd) .main-column {
+  background-color: #f2f2f2;
+}
+
+.cockroaches-selected .table-row:nth-child(even),
+.cockroaches-selected .responsive .table-row:nth-child(even) .main-column {
+  background-color: rgba(3, 85, 163, 0.05);
+}
+
+.rodents-selected .table-row:nth-child(even),
+.rodents-selected .responsive .table-row:nth-child(even) .main-column {
+  background-color: rgba(251, 205, 102, 0.05);
+}
+
+.mosquitoes-selected .table-row:nth-child(even),
+.mosquitoes-selected .responsive .table-row:nth-child(even) .main-column {
+  background-color: rgba(7, 134, 67, 0.05);
+}
+
+.ticks-selected .table-row:nth-child(even),
+.ticks-selected .responsive .table-row:nth-child(even) .main-column {
+  background-color: rgba(224, 33, 39, 0.05);
+}
+
+.gradient {
+  width: 100%;
+}
+
+.gradient .labels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.grad {
+  transition: 0.3s background-color ease-in-out;
+  border-radius: 3px;
+  height: 19px;
+}
+
+.cockroaches-selected .grad {
+  background: linear-gradient(90deg, #4393cf 0%, rgba(67, 147, 207, 0.2) 100%);
+}
+
+.rodents-selected .grad {
+  background: linear-gradient(90deg, #fbcd66 0%, rgba(251, 205, 102, 0.2) 100%);
+}
+
+.mosquitoes-selected .grad {
+  background: linear-gradient(90deg, #12853d 0%, rgba(7, 134, 67, 0.2) 100%);
+}
+
+.ticks-selected .grad {
+  background: linear-gradient(90deg, #e02127 0%, rgba(224, 33, 39, 0.2) 100%);
+}
+
+.tippy-box {
+  border: 1px solid #051c34;
+  text-align: center;
+  color: #051c34;
+}
+
+.tooltip-title {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 19px;
+  color: #051c34;
+}
+
+.tooltip-subtitle {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  color: #051c34;
+}
+
+.d-mobile {
+  display: block;
+}
+
+.d-desktop {
+  display: none;
+}
+
+.cta-click {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 12px;
+  color: #bdbdbd;
+  max-width: 70%;
+}
+
+.zoom-mobile {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.zoom-mobile .zoom-btns {
+  margin-top: 0px;
+}
