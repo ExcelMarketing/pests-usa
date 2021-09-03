@@ -207,7 +207,8 @@ function cellTemplate(d) {
 
 function mainCellTemplate(d, i) {
   const propName = this.propName;
-  return `${i + 1}. ${d[propName]}`;
+  const rank = d.Overall;
+  return `${rank}. ${d[propName]}`;
 }
 
 function getHeaders(type) {

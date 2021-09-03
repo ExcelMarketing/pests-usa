@@ -60,12 +60,12 @@ function App() {
         const rank = data[name];
 
         return `
-          <div class="tooltip-title">${
-            isNaN(rank) ? "N/A" : ordinal_suffix_of(rank)
-          } - ${name}</div>
-          <div class="tooltip-subtitle">${capitalizeFirstLetter(
-            pest
-          )} Pest Likelihood</div>
+          <div class="tooltip-title">
+            ${name} - ${isNaN(rank) ? "N/A" : ordinal_suffix_of(rank)}
+          </div>
+          <div class="tooltip-subtitle">
+            ${capitalizeFirstLetter(pest)} Likelihood
+          </div>
         `;
       },
     }).render();
@@ -127,6 +127,7 @@ function App() {
     }
 
     pest = p;
+    d3.selectAll(".js_pest_name").html(p);
     d3.selectAll(".pest").classed("active", false);
     d3.select("." + p).classed("active", true);
     d3.select("#root")
@@ -147,14 +148,14 @@ function App() {
         const scale = Math.min(maxScale, currentScale + zoomStep);
         currentScale = scale;
         map.zoom(scale);
-        d3.selectAll(".zoom-btn:last-child").classed('active', true)
+        d3.selectAll(".zoom-btn:last-child").classed("active", true);
       }
     },
     zoomOut() {
       if (map) {
         currentScale = 1;
         map.resetZoom();
-        d3.selectAll(".zoom-btn:last-child").classed('active', false)
+        d3.selectAll(".zoom-btn:last-child").classed("active", false);
       }
     },
   };
