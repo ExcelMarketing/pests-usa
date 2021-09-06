@@ -205,14 +205,15 @@ function cellTemplate(d) {
   return `${ordinal_suffix_of(d[propName])}`;
 }
 
-function mainCellTemplate(d, i) {
+function mainCellTemplate(d, i, isSame = false) {
   const propName = this.propName;
   const rank = d.Overall;
-  return `${rank}. ${d[propName]}`;
+  return `${isSame ? '=' : ''} ${rank}. ${d[propName]}`;
 }
 
-function getHeaders(type) {
+function getHeaders(type, allData) {
   const columns = columnConf[type];
+  const grouped = d3.group(allData, d => d.Overall);
 
   if (!columns) return;
 
@@ -223,7 +224,10 @@ function getHeaders(type) {
     return {
       id: i,
       isMainColumn,
-      cellTemplate: tmplt,
+      cellTemplate: function(m, ind) {
+        const isSame = grouped.get(m.Overall).length > 1;
+        return tmplt.bind(this)(m, ind, isSame)
+      },
       headerTemplate,
       order: i === 1 ? "asc" : null,
       ...d,

@@ -74,7 +74,7 @@ function App() {
   function initTable(pest) {
     table = Table({
       data: tableData[pest],
-      headers: getHeaders(pest),
+      headers: getHeaders(pest, tableData[pest]),
       container: "#table",
       pagination: false,
       sortable: false,
