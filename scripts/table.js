@@ -272,6 +272,21 @@ function Table(params) {
       if (d.headerTemplate && typeof d.headerTemplate === "function") {
         d.headerTemplate(d).then((html) => {
           d3.select(this).html(html);
+
+          if (d.tooltip) {
+            if (this._tippy) {
+              this._tippy.destroy();
+            }
+
+            tippy(this, {
+              theme: "light",
+              content: `<div class="table-tooltip">${d.tooltip}</div>`,
+              arrow: false,
+              allowHTML: true,
+              maxWidth: 200,
+              placement: "top",
+            });
+          }
         });
       } else {
         d3.select(this).html(d.name);

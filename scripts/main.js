@@ -60,11 +60,13 @@ function App() {
         const rank = data[name];
 
         return `
-          <div class="tooltip-title">
-            ${name} - ${isNaN(rank) ? "N/A" : ordinal_suffix_of(rank)}
-          </div>
-          <div class="tooltip-subtitle">
-            ${capitalizeFirstLetter(pest)} Likelihood
+          <div class="map-tooltip">
+            <div class="tooltip-title">
+              ${name} - ${isNaN(rank) ? "N/A" : ordinal_suffix_of(rank)}
+            </div>
+            <div class="tooltip-subtitle">
+              ${capitalizeFirstLetter(pest)} Likelihood
+            </div>
           </div>
         `;
       },

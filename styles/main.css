@@ -351,9 +351,19 @@ path:focus {
 }
 
 .tippy-box {
-  border: 1px solid #051c34;
+  padding: 0px;
+}
+
+.map-tooltip {
   text-align: center;
   color: #051c34;
+  padding: 5px 9px;
+  border: 1px solid #051c34;
+  border-radius: 5px;
+}
+
+.tippy-content {
+  padding: 0px;
 }
 
 .tooltip-title {
@@ -368,6 +378,15 @@ path:focus {
   font-size: 14px;
   line-height: 19px;
   color: #051c34;
+}
+
+.table-tooltip {
+  border-radius: 5px;
+  color: #0355A3;
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  border: 1px solid #0355A3;
+  padding: 5px 9px;
 }
 
 .d-mobile {
