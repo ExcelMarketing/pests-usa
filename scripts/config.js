@@ -35,7 +35,7 @@ const columnConf = {
       tooltip: '<strong>Household income:</strong> research suggests that the lower the income, the higher the cockroach likelihood.',
     },
     {
-      name: "Landfills<br>ranking",
+      name: "Landfill<br>Sites",
       icon: "./images/Icons/garbage-can.svg",
       propName: "Landifills ranking",
       rankProp: "Landifills ranking",
@@ -85,7 +85,7 @@ const columnConf = {
       tooltip: '<strong>Fruit Farms:</strong> the more fruit farms, the better the source of food, making it easy for rats to thrive.'
     },
     {
-      name: "Landfills<br>ranking",
+      name: "Landfill<br>Sites",
       icon: "./images/Icons/garbage-can.svg",
       propName: "Landifills ranking",
       rankProp: "Landifills ranking",
